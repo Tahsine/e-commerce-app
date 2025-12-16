@@ -82,7 +82,7 @@ export default function OursMenu() {
             {menuItems.slice(0, 3).map((item, index) => (
               <div key={index}>
                 {/* Image */}
-                <div className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer">
+                <div className="group relative overflow-hidden rounded-2xl aspect-4/3 cursor-pointer">
                   <img
                     src={item.image}
                     alt={item.name}
@@ -126,7 +126,7 @@ export default function OursMenu() {
             {menuItems.slice(3, 5).map((item, index) => (
               <div key={index + 3}>
                 {/* Image */}
-                <div className="group relative overflow-hidden rounded-2xl aspect-[16/9] cursor-pointer">
+                <div className="group relative overflow-hidden rounded-2xl aspect-video cursor-pointer">
                   <img
                     src={item.image}
                     alt={item.name}
@@ -173,7 +173,7 @@ export default function OursMenu() {
               key={index}
               className={`${index === 4 ? "md:col-span-2" : ""}`}
             >
-              <div className="group relative overflow-hidden rounded-2xl aspect-[4/3] cursor-pointer">
+              <div className="group relative overflow-hidden rounded-2xl aspect-4/3 cursor-pointer">
                 <img
                   src={item.image}
                   alt={item.name}
