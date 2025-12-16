@@ -1,118 +1,167 @@
+"use client";
+import { useState } from "react";
+
 export default function SpecialMenu() {
-  const menuCategories = [
+  const [activeMenu, setActiveMenu] = useState(0);
+
+  const menuItems = [
     {
-      title: "Gâteaux Signature",
-      items: [
-        {
-          name: "Gâteau au Chocolat Noir",
-          description:
-            "Chocolat belge 70%, ganache onctueuse, décoration artisanale",
-          price: "15,000 FCFA",
-        },
-        {
-          name: "Forêt Noire Classique",
-          description: "Génoise chocolat, cerises noires, chantilly maison",
-          price: "18,000 FCFA",
-        },
-        {
-          name: "Red Velvet Américain",
-          description:
-            "Gâteau rouge velours, cream cheese frosting, noix de pécan",
-          price: "20,000 FCFA",
-        },
-      ],
+      name: "TRUFFLE RISOTTO",
+      image:
+        "https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=800&q=80",
+      description: "Creamy Arborio rice with black truffle",
     },
     {
-      title: "Tartes & Entremets",
-      items: [
-        {
-          name: "Tarte au Citron Meringuée",
-          description: "Pâte sablée, crème citron, meringue italienne flambée",
-          price: "12,000 FCFA",
-        },
-        {
-          name: "Tarte aux Fruits de Saison",
-          description: "Crème pâtissière vanille, fruits frais du marché",
-          price: "14,000 FCFA",
-        },
-        {
-          name: "Tiramisu Traditionnel",
-          description: "Biscuits imbibés café, mascarpone, cacao pur",
-          price: "10,000 FCFA",
-        },
-      ],
+      name: "WAGYU STEAK",
+      image:
+        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800&q=80",
+      description: "Premium A5 Wagyu with rosemary butter",
     },
     {
-      title: "Viennoiseries",
-      items: [
-        {
-          name: "Croissants Pur Beurre",
-          description: "Pâte feuilletée maison, beurre de Normandie (lot de 6)",
-          price: "5,000 FCFA",
-        },
-        {
-          name: "Pain au Chocolat",
-          description: "Chocolat noir 65%, feuilletage croustillant (lot de 6)",
-          price: "6,000 FCFA",
-        },
-      ],
+      name: "LOBSTER THERMIDOR",
+      image:
+        "https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=800&q=80",
+      description: "Fresh lobster in brandy cream sauce",
+    },
+    {
+      name: "CHOCOLATE SOUFFLÉ",
+      image:
+        "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800&q=80",
+      description: "Warm Belgian chocolate with vanilla ice cream",
     },
   ];
 
+  const stackStyles = [
+    { rotate: "-6deg", x: "-20px", y: "-10px", zIndex: 1 },
+    { rotate: "8deg", x: "20px", y: "5px", zIndex: 2 },
+    { rotate: "-4deg", x: "10px", y: "-15px", zIndex: 3 },
+    { rotate: "5deg", x: "-5px", y: "15px", zIndex: 4 },
+  ];
+
   return (
-    <section className="bg-neutral-900 text-white py-20 px-6">
-      {/* Header */}
-      <div className="text-center mb-16 max-w-4xl mx-auto">
-        <div className="text-amber-500 text-sm font-bold tracking-widest mb-4">
-          DÉCOUVREZ PLUS
-        </div>
-        <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-wider">
-          NOTRE CARTE
-        </h2>
-        <p className="text-neutral-400 text-sm tracking-wide">
-          CLIQUEZ SUR CHAQUE CATÉGORIE POUR DÉCOUVRIR NOS CRÉATIONS
-        </p>
-      </div>
+    <section className="flex items-center justify-center min-h-screen px-5 py-20 md:px-12 lg:px-28">
+      <div className="w-full max-w-7xl">
+        <h1 className="font-anton text-5xl md:text-6xl lg:text-7xl mt-2 mb-12 text-center">
+          MENU SPECIAL
+        </h1>
 
-      {/* Menu Grid */}
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
-        {menuCategories.map((category, catIdx) => (
-          <div key={catIdx} className="space-y-6">
-            {/* Catégorie Title */}
-            <h3 className="text-2xl font-black tracking-wider border-b border-amber-500 pb-3">
-              › {category.title}
-            </h3>
-
-            {/* Items List */}
-            <div className="space-y-6">
-              {category.items.map((item, itemIdx) => (
-                <div
-                  key={itemIdx}
-                  className="group cursor-pointer transition-all hover:translate-x-2"
+        {/* DESKTOP LAYOUT */}
+        <div className="hidden lg:flex items-center justify-between min-h-150">
+          {/* Noms à gauche */}
+          <div className="w-1/2 space-y-12 pl-10">
+            {menuItems.map((item, index) => (
+              <div
+                key={index}
+                onMouseEnter={() => setActiveMenu(index)}
+                className="cursor-pointer group flex items-baseline gap-6"
+              >
+                <span
+                  className={`font-anton text-6xl transition-colors duration-300 ${
+                    activeMenu === index ? "text-red-400" : "text-black"
+                  }`}
                 >
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-bold text-amber-500 group-hover:text-amber-400">
-                      {item.name}
-                    </h4>
-                    <span className="text-neutral-400 font-bold text-sm whitespace-nowrap ml-4">
-                      {item.price}
-                    </span>
-                  </div>
-                  <p className="text-neutral-400 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+                  {index + 1}.
+                </span>
+                <h3
+                  className={`font-anton text-6xl uppercase  transition-colors duration-300 ${
+                    activeMenu === index ? "text-red-400" : "text-black"
+                  }`}
+                >
+                  {item.name}
+                </h3>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {/* CTA Button */}
-      <div className="text-center mt-16">
-        <button className="bg-amber-500 text-neutral-900 px-10 py-4 font-black tracking-widest text-sm hover:bg-amber-400 transition-colors">
-          COMMANDER MAINTENANT
-        </button>
+          {/* Image à droite */}
+          <div className="w-1/2 relative h-150 flex items-center justify-center">
+            {menuItems.map((item, index) => {
+              const isActive = activeMenu === index;
+              // On calcule la transformation finale
+              // Si actif : scale 1.1, rotation 0 ou légère, z-index haut
+              // Si inactif : rotation et translation définies dans stackStyles
+
+              return (
+                <div
+                  key={index}
+                  style={{
+                    transform: isActive
+                      ? `rotate(0deg) scale(1.1)`
+                      : `rotate(${stackStyles[index].rotate}) translate(${stackStyles[index].x}, ${stackStyles[index].y}) scale(1)`,
+                    zIndex: isActive ? 50 : stackStyles[index].zIndex,
+                  }}
+                  className={`
+                    absolute 
+                    w-95 h-125 
+                    overflow-hidden 
+                    rounded-sm shadow-2xl 
+                    border-[6px] border-white 
+                    transition-all duration-500 ease-in-out
+                    ${
+                      isActive
+                        ? "brightness-110 shadow-black/40"
+                        : "brightness-90 opacity-90"
+                    }
+                  `}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Overlay subtil pour foncer les images inactives si désiré */}
+                  <div
+                    className={`absolute inset-0 bg-black/10 transition-opacity duration-500 ${
+                      isActive ? "opacity-0" : "opacity-20"
+                    }`}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Tablette Layout - Grille 2x2 */}
+        <div className="hidden md:grid lg:hidden grid-cols-2 gap-6">
+          {menuItems.map((item, index) => (
+            <div
+              key={index}
+              className="relative overflow-hidden rounded-3xl shadow-xl group cursor-pointer h-80"
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute bottom-6 left-6 text-white">
+                <h3 className="font-anton text-3xl mb-2">{item.name}</h3>
+                <p className="text-sm">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile Layout - 1 colonne */}
+        <div className="md:hidden space-y-6">
+          {menuItems.map((item, index) => (
+            <div
+              key={index}
+              className="relative overflow-hidden rounded-3xl shadow-xl h-96"
+            >
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <h3 className="font-anton text-3xl mb-2">{item.name}</h3>
+                <p className="text-sm">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

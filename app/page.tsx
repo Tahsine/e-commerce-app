@@ -2,6 +2,7 @@ import NavBar from "@/components/NavBar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import SpecialMenu from "@/components/SpecialMenu";
+import OursMenu from "@/components/OursMenu";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <Hero />
       <About />
       <SpecialMenu />
+      <OursMenu />
     </main>
   );
 }

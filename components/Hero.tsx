@@ -1,12 +1,20 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import gsap from "gsap";
 
 export default function Hero() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Heures d'ouverture (24h format)
+  // Refs pour l'animation
+  const heroRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const title1Ref = useRef<HTMLHeadingElement>(null);
+  const title2Ref = useRef<HTMLHeadingElement>(null);
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+
   const openingHours = {
     monday: { open: 11, close: 22 },
     tuesday: { open: 11, close: 22 },
@@ -18,24 +26,55 @@ export default function Hero() {
   };
 
   useEffect(() => {
+    // 1. Logique d'ouverture
     const checkIfOpen = () => {
       const now = new Date();
       const day = now
         .toLocaleDateString("en-US", { weekday: "long" })
-        .toLocaleLowerCase();
+        .toLowerCase();
       const hour = now.getHours();
-
       const todayHours = openingHours[day as keyof typeof openingHours];
-      setIsOpen(hour >= todayHours.open && hour < todayHours.close);
+      if (todayHours) {
+        setIsOpen(hour >= todayHours.open && hour < todayHours.close);
+      }
     };
-
     checkIfOpen();
-    const interval = setInterval(checkIfOpen, 60000); // Check every minute
-    return () => clearInterval(interval);
+
+    // 2. Animation GSAP
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        defaults: { ease: "power4.out", duration: 1.2 },
+      });
+
+      tl.fromTo(
+        [
+          badgeRef.current,
+          title1Ref.current,
+          title2Ref.current,
+          textRef.current,
+          buttonRef.current,
+        ],
+        {
+          y: -50, // Part du haut
+          opacity: 0, // Invisible
+        },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.2, // Délai entre chaque élément
+          delay: 0.5, // Attendre un peu que le site charge
+        }
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
-    <section className="relative flex w-full min-h-screen items-center overflow-hidden">
+    <section
+      ref={heroRef}
+      className="relative flex w-full min-h-screen items-center overflow-hidden"
+    >
       {/* Background video */}
       <video
         autoPlay
@@ -49,9 +88,11 @@ export default function Hero() {
       <div className="absolute top-0 left-0 w-full h-full bg-black/40" />
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col justify-center items-start gap-6 max-w-7xl px-16 py-20">
+      <div className="relative z-10 flex flex-col justify-center items-start gap-6 max-w-7xl px-8 md:px-16 py-20">
+        {/* Badge Statut */}
         <div
-          className={`flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm ${
+          ref={badgeRef}
+          className={`flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm opacity-0 ${
             isOpen
               ? "bg-green-500/20 border border-green-500/50"
               : "bg-red-500/20 border border-red-500/50"
@@ -67,29 +108,49 @@ export default function Hero() {
               isOpen ? "text-green-100" : "text-red-100"
             }`}
           >
-            {isOpen ? "OPEN" : "CLOSED"}
+            {isOpen ? "OUVERT" : "FERMÉ"}
           </span>
         </div>
-        <h1
-          className={`text-white text-6xl lg:text-9xl md:text-8xl font-anton`}
-        >
-          WHERE ELEGANCE
-        </h1>
-        <h1 className="text-white text-6xl lg:text-9xl md:text-8xl font-anton">
-          MEETS FLAVOR
-        </h1>
 
-        <p className="text-white">
-          We turn every meal into a memorable experience. <br />
-          From Mouth-watering dishes crafted every time.
+        {/* Titres */}
+        <div className="overflow-hidden">
+          <h1
+            ref={title1Ref}
+            className="text-white text-5xl md:text-8xl lg:text-9xl font-anton leading-none opacity-0"
+          >
+            L'ÉLÉGANCE DANS
+          </h1>
+        </div>
+        <div className="overflow-hidden">
+          <h1
+            ref={title2Ref}
+            className="text-white text-5xl md:text-8xl lg:text-9xl font-anton leading-none opacity-0"
+          >
+            CHAQUE SAVEUR
+          </h1>
+        </div>
+
+        {/* Paragraphe */}
+        <p
+          ref={textRef}
+          className="text-white text-lg md:text-xl max-w-2xl opacity-0"
+        >
+          Nous transformons chaque repas en une expérience inoubliable. <br />
+          Des plats savoureux, préparés avec soin.
         </p>
 
-        <button>
-          <a href="/" className="flex gap-2 py-3 px-6 bg-red-400 rounded-full">
-            <span className="text-white">EXPLORE MENU</span>
-            <ArrowRight color="white" />
+        {/* Bouton wrapper pour l'animation */}
+        <div ref={buttonRef} className="opacity-0">
+          <a
+            href="/"
+            className="group flex items-center gap-2 py-4 px-8 bg-red-400 hover:bg-red-500 transition-all duration-300 rounded-full w-fit"
+          >
+            <span className="text-white font-bold uppercase tracking-wider">
+              Explore Menu
+            </span>
+            <ArrowRight className="text-white group-hover:translate-x-1 transition-transform" />
           </a>
-        </button>
+        </div>
       </div>
     </section>
   );
