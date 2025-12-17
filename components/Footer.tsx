@@ -1,4 +1,5 @@
 "use client";
+import { SITE_NAME } from "@/lib/data";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -17,10 +18,10 @@ export default function Footer() {
 
   // Uniquement tes liens réels
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "#about" },
+    { name: "Accueil", href: "/" },
+    { name: "À Propos", href: "#about" },
     { name: "Menu", href: "/menu", external: true }, // La seule page externe
-    { name: "Special Offers", href: "#special" },
+    { name: "Offres Spéciales", href: "#special" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -76,14 +77,14 @@ export default function Footer() {
           <div className="footer-fade space-y-10">
             <div className="space-y-6">
               <h2 className="font-anton text-4xl md:text-5xl uppercase leading-tight">
-                SIGN UP FOR UPDATES <br /> & DELICIOUS SURPRISES
+                INSCRIVEZ-VOUS POUR <br /> DES SURPRISES DÉLICIEUSES
               </h2>
 
               {/* INPUT NEWSLETTER */}
               <div className="relative max-w-md group">
                 <input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Votre adresse email"
                   className="w-full bg-transparent border-b border-[#FEFAE0]/30 py-4 pr-12 outline-none focus:border-red-400 transition-colors placeholder:text-[#FEFAE0]/30"
                 />
                 <button className="absolute right-0 top-1/2 -translate-y-1/2 hover:text-red-400 transition-colors">
@@ -94,7 +95,7 @@ export default function Footer() {
 
             <div className="space-y-4">
               <p className="font-anton text-lg uppercase text-gray-500 tracking-widest">
-                Follow us on
+                Suivez-nous sur
               </p>
               <div className="flex gap-4">
                 {socials.map((social) => (
@@ -134,16 +135,16 @@ export default function Footer() {
         <div className="pt-10 border-t border-[#FEFAE0]/10 overflow-hidden text-center">
           <h1
             ref={brandRef}
-            className="font-anton text-[18vw] leading-[0.8] uppercase select-none pointer-events-none"
+            className="font-anton text-[13vw] leading-none uppercase select-none pointer-events-none"
           >
-            [BRAND]
+            {SITE_NAME}
           </h1>
         </div>
 
         {/* BOTTOM BAR */}
         <div className="flex flex-col md:flex-row justify-between items-center mt-10 pt-10 border-t border-[#FEFAE0]/10 text-[10px] uppercase tracking-[0.2em] text-gray-500 gap-4">
-          <p>© 2025 | [BRAND] RESTAURANT GROUP</p>
-          <p>Design & Created by Pentaclay</p>
+          <p>© 2025 | {SITE_NAME} RESTAURANT GROUP</p>
+          <p>Design & Created by KalineZephyr</p>
         </div>
       </div>
     </footer>

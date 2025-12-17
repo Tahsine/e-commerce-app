@@ -6,24 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { CONTACT_INFO } from "@/lib/data";
+
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   // Ref pour cibler les éléments internes sans créer 10 refs différentes
   const contentRef = useRef<HTMLDivElement>(null);
-
-  const contactInfo = {
-    address: "Abomey-Calavi, Atlantique, Benin",
-    addressLink: "https://maps.google.com",
-    phone: "(223) 01 XX XX XX XX",
-    email: "test.help@gmail.com",
-  };
-
-  const openingHours = [
-    { day: "Mon", hours: "CLOSED" },
-    { day: "Tue to Fri", hours: "11 AM – 10 PM" },
-    { day: "Sat to Sun", hours: "12 PM – 7 PM" },
-  ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -84,49 +73,50 @@ export default function Contact() {
         {/* Wrapper pour l'animation du contenu interne */}
         <div ref={contentRef} className="flex flex-col">
           <span className="text-red-400 font-medium tracking-widest uppercase text-sm mb-6 block">
-            {"{Get In Touch}"}
+            {/* {Get In Touch} en français stylistic */}
+            — CONTACTEZ-NOUS
           </span>
 
           <h2 className="font-anton text-4xl md:text-6xl uppercase leading-none mb-6 text-black">
-            FLAVORS THAT BRING <br /> JOY TO EVERY BITE
+            DES SAVEURS QUI APPORTENT <br /> DE LA JOIE
           </h2>
 
           <p className="text-gray-600 mb-12 max-w-md">
-            Our dishes are made with only fresh and local ingredients.
+            Nos plats sont préparés uniquement avec des ingrédients frais et locaux.
           </p>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
               <h4 className="font-anton text-2xl uppercase border-b border-black/10 pb-2">
-                Find Us
+                Nous Trouver
               </h4>
               <ul className="space-y-4">
                 <li className="flex items-center gap-3 group">
                   <MapPin size={18} className="text-red-400" />
                   <a
-                    href={contactInfo.addressLink}
+                    href={CONTACT_INFO.addressLink}
                     target="_blank"
                     className="hover:underline transition-all"
                   >
-                    {contactInfo.address}
+                    {CONTACT_INFO.address}
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone size={18} className="text-red-400" />
                   <a
-                    href={`tel:${contactInfo.phone}`}
+                    href={`tel:${CONTACT_INFO.phone}`}
                     className="hover:underline"
                   >
-                    {contactInfo.phone}
+                    {CONTACT_INFO.phone}
                   </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail size={18} className="text-red-400" />
                   <a
-                    href={`mailto:${contactInfo.email}`}
+                    href={`mailto:${CONTACT_INFO.email}`}
                     className="hover:underline"
                   >
-                    {contactInfo.email}
+                    {CONTACT_INFO.email}
                   </a>
                 </li>
               </ul>
@@ -134,10 +124,10 @@ export default function Contact() {
 
             <div className="space-y-6">
               <h4 className="font-anton text-2xl uppercase border-b border-black/10 pb-2">
-                Opening Hours
+                Horaires
               </h4>
               <ul className="space-y-3">
-                {openingHours.map((item, idx) => (
+                {CONTACT_INFO.hours.map((item, idx) => (
                   <li
                     key={idx}
                     className="flex justify-between text-sm md:text-base"

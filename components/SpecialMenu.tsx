@@ -1,35 +1,11 @@
 "use client";
 import { useState } from "react";
+import { MENU_ITEMS } from "@/lib/data";
 
 export default function SpecialMenu() {
   const [activeMenu, setActiveMenu] = useState(0);
 
-  const menuItems = [
-    {
-      name: "TRUFFLE RISOTTO",
-      image:
-        "https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=800&q=80",
-      description: "Creamy Arborio rice with black truffle",
-    },
-    {
-      name: "WAGYU STEAK",
-      image:
-        "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800&q=80",
-      description: "Premium A5 Wagyu with rosemary butter",
-    },
-    {
-      name: "LOBSTER THERMIDOR",
-      image:
-        "https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=800&q=80",
-      description: "Fresh lobster in brandy cream sauce",
-    },
-    {
-      name: "CHOCOLATE SOUFFLÉ",
-      image:
-        "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800&q=80",
-      description: "Warm Belgian chocolate with vanilla ice cream",
-    },
-  ];
+  const menuItems = MENU_ITEMS.filter((item) => item.isSpecial);
 
   const stackStyles = [
     { rotate: "-6deg", x: "-20px", y: "-10px", zIndex: 1 },

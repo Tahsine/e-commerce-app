@@ -4,121 +4,19 @@ import { ShoppingCart } from "lucide-react";
 import Navbar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import gsap from "gsap";
+import { MENU_ITEMS, CATEGORIES } from "@/lib/data";
+import { useCart } from "@/context/CartContext";
 
 export default function MenuPage() {
+  const { addItem } = useCart();
   const [activeCategory, setActiveCategory] = useState("all");
   const headerRef = useRef(null);
 
-  const categories = [
-    { id: "all", label: "All Menu" },
-    { id: "featured", label: "Featured Recipes" },
-    { id: "breakfast", label: "Breakfast" },
-    { id: "lunch", label: "Lunch" },
-    { id: "dinner", label: "Dinner" },
-    { id: "dessert", label: "Dessert" },
-  ];
-
-  const menuItems = [
-    {
-      id: 1,
-      name: "DRAGON MAKI",
-      price: 16.75,
-      category: "dinner",
-      isFeatured: true,
-      image:
-        "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&q=80",
-      rating: 4.7,
-      reviews: 90,
-    },
-    {
-      id: 2,
-      name: "SPICY TUNA NIGIRI",
-      price: 12.5,
-      category: "dinner",
-      isFeatured: true,
-      image:
-        "https://images.unsplash.com/photo-1564489563601-c53cfc451e93?w=800&q=80",
-      rating: 5,
-      reviews: 100,
-    },
-    {
-      id: 3,
-      name: "SIGNATURE SUSHI ROLL",
-      price: 18.99,
-      category: "dinner",
-      isFeatured: false,
-      image:
-        "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=800&q=80",
-      rating: 5,
-      reviews: 35,
-    },
-    {
-      id: 4,
-      name: "MEDITERRANEAN PLATTER",
-      price: 22.0,
-      category: "lunch",
-      isFeatured: true,
-      image:
-        "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80",
-      rating: 4.8,
-      reviews: 75,
-    },
-    {
-      id: 5,
-      name: "AUTUMN HARVEST PLATE",
-      price: 19.5,
-      category: "dinner",
-      isFeatured: false,
-      image:
-        "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80",
-      rating: 4.9,
-      reviews: 62,
-    },
-    {
-      id: 6,
-      name: "RUSTIC CHARCUTERIE",
-      price: 24.99,
-      category: "lunch",
-      isFeatured: true,
-      image:
-        "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
-      rating: 4.6,
-      reviews: 88,
-    },
-    {
-      id: 7,
-      name: "GOLDEN PANCAKES",
-      price: 11.5,
-      category: "breakfast",
-      isFeatured: false,
-      image:
-        "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=800&q=80",
-      rating: 4.8,
-      reviews: 120,
-    },
-    {
-      id: 8,
-      name: "CHOCOLATE LAVA CAKE",
-      price: 8.99,
-      category: "dessert",
-      isFeatured: false,
-      image:
-        "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800&q=80",
-      rating: 5,
-      reviews: 95,
-    },
-    {
-      id: 9,
-      name: "EGGS BENEDICT",
-      price: 14.5,
-      category: "breakfast",
-      isFeatured: true,
-      image:
-        "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=800&q=80",
-      rating: 4.7,
-      reviews: 110,
-    },
-  ];
+  // Using imported CATEGORIES directly
+  const categories = CATEGORIES;
+  
+  // Using imported MENU_ITEMS directly
+  const menuItems = MENU_ITEMS;
 
   const filteredItems = menuItems.filter((item) => {
     if (activeCategory === "all") return true;
@@ -143,7 +41,7 @@ export default function MenuPage() {
           {/* Header XXL comme sur l'image */}
           <div className="text-center mb-16">
             <h1 className="font-anton text-8xl md:text-[12rem] lg:text-[15rem] leading-[0.8] mb-12 uppercase">
-              OUR MENU
+              NOTRE MENU
             </h1>
             <div className="w-full h-px bg-black/10"></div>
           </div>
@@ -191,15 +89,18 @@ export default function MenuPage() {
                   {/* Nom et bouton BUY sur la même ligne */}
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-anton text-xl">{item.name}</h3>
-                    <button className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors text-sm font-medium">
+                    <button
+                      onClick={() => addItem(item)}
+                      className="flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition-colors text-sm font-medium"
+                    >
                       <ShoppingCart size={16} />
-                      BUY
+                      ACHETER
                     </button>
                   </div>
 
                   {/* Prix */}
                   <p className="text-2xl font-bold mb-3">
-                    ${item.price.toFixed(2)}
+                    {item.price.toLocaleString()} FCFA
                   </p>
 
                   {/* Ligne de séparation */}
@@ -235,7 +136,7 @@ export default function MenuPage() {
           {filteredItems.length === 0 && (
             <div className="text-center py-20">
               <p className="text-2xl text-gray-600">
-                No items found in this category.
+                Aucun article trouvé dans cette catégorie.
               </p>
             </div>
           )}

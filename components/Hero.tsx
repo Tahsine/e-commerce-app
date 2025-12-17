@@ -4,6 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 
+import { OPENING_HOURS } from "@/lib/data";
+
 export default function Hero() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -15,15 +17,7 @@ export default function Hero() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
 
-  const openingHours = {
-    monday: { open: 11, close: 22 },
-    tuesday: { open: 11, close: 22 },
-    wednesday: { open: 11, close: 22 },
-    thursday: { open: 11, close: 22 },
-    friday: { open: 11, close: 23 },
-    saturday: { open: 10, close: 23 },
-    sunday: { open: 10, close: 21 },
-  };
+  const openingHours = OPENING_HOURS;
 
   useEffect(() => {
     // 1. Logique d'ouverture
@@ -142,11 +136,11 @@ export default function Hero() {
         {/* Bouton wrapper pour l'animation */}
         <div ref={buttonRef} className="opacity-0">
           <a
-            href="/"
+            href="/menu"
             className="group flex items-center gap-2 py-4 px-8 bg-red-400 hover:bg-red-500 transition-all duration-300 rounded-full w-fit"
           >
             <span className="text-white font-bold uppercase tracking-wider">
-              Explore Menu
+              DÉCOUVRIR LE MENU
             </span>
             <ArrowRight className="text-white group-hover:translate-x-1 transition-transform" />
           </a>

@@ -1,59 +1,13 @@
 "use client";
 import { ArrowRight } from "lucide-react";
+import { MENU_ITEMS } from "@/lib/data";
+import { useCart } from "@/context/CartContext";
 
 export default function OursMenu() {
-  const menuItems = [
-    {
-      name: "MOCKTAIL SAKURA",
-      description: "Infusion florale aux notes pétillantes",
-
-      price: 15.0,
-      image:
-        "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
-      rating: 4.8,
-      reviews: 40,
-    },
-    {
-      name: "SAUCE AIL BEURRE",
-      description: "Sauce onctueuse relevée au citron vert",
-
-      price: 16.0,
-      image:
-        "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
-      rating: 4.8,
-      reviews: 40,
-    },
-    {
-      name: "SAUMON TERIYAKI",
-      description: "Saumon grillé nappé de sauce teriyaki",
-
-      price: 15.0,
-      image:
-        "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80",
-      rating: 4.8,
-      reviews: 40,
-    },
-    {
-      name: "CÔTELETTES D’AGNEAU",
-      description: "Agneau tendre mariné aux herbes",
-
-      price: 13.0,
-      image:
-        "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80",
-      rating: 4.8,
-      reviews: 40,
-    },
-    {
-      name: "TIRAMISU FUSION",
-      description: "Dessert italien revisité avec modernité",
-
-      price: 15.0,
-      image:
-        "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80",
-      rating: 4.8,
-      reviews: 40,
-    },
-  ];
+  const { addItem } = useCart();
+  // Select specific items for the home page or just take the first 5
+  // The original component used specific items, which we mapped to om-1...om-5
+  const menuItems = MENU_ITEMS.filter((item) => item.id.startsWith("om"));
 
   return (
     <section className="min-h-screen px-5 py-20 md:px-12 lg:px-28">
@@ -94,7 +48,10 @@ export default function OursMenu() {
                   />
                   {/* Hover Button */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <button className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium">
+                    <button
+                      onClick={() => addItem(item)}
+                      className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium"
+                    >
                       COMMANDER
                     </button>
                   </div>
@@ -103,7 +60,9 @@ export default function OursMenu() {
                 {/* Info en dessous */}
                 <div className="mt-6">
                   <h3 className="font-anton text-2xl mb-2">{item.name}</h3>
-                  <p className="text-xl mb-3">${item.price.toFixed(2)}</p>
+                  <p className="text-xl mb-3">
+                    {item.price.toLocaleString()} FCFA
+                  </p>
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
                       {[...Array(5)].map((_, i) => (
@@ -138,7 +97,10 @@ export default function OursMenu() {
                   />
                   {/* Hover Button */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <button className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium">
+                    <button
+                      onClick={() => addItem(item)}
+                      className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium"
+                    >
                       COMMENDER
                     </button>
                   </div>
@@ -147,7 +109,9 @@ export default function OursMenu() {
                 {/* Info en dessous */}
                 <div className="mt-6">
                   <h3 className="font-anton text-2xl mb-2">{item.name}</h3>
-                  <p className="text-xl mb-3">${item.price.toFixed(2)}</p>
+                  <p className="text-xl mb-3">
+                    {item.price.toLocaleString()} FCFA
+                  </p>
                   <div className="flex items-center gap-2">
                     <div className="flex gap-1">
                       {[...Array(5)].map((_, i) => (
@@ -185,14 +149,19 @@ export default function OursMenu() {
                 />
                 {/* Hover Button */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <button className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium">
+                  <button
+                    onClick={() => addItem(item)}
+                    className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium"
+                  >
                     COMMENDER
                   </button>
                 </div>
               </div>
               <div className="mt-6">
                 <h3 className="font-anton text-2xl mb-2">{item.name}</h3>
-                <p className="text-xl mb-3">${item.price.toFixed(2)}</p>
+                <p className="text-xl mb-3">
+                  {item.price.toLocaleString()} FCFA
+                </p>
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1">
                     {[...Array(5)].map((_, i) => (

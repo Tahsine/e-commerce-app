@@ -1,6 +1,8 @@
 "use client";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useCart } from "@/context/CartContext";
+import { SITE_NAME } from "@/lib/data";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -8,12 +10,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Navbar() {
+  const { toggleCart, totalItems } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
 
   const navLinks = [
-    { name: "HOME", href: "/" },
+    { name: "ACCUEIL", href: "/" },
     { name: "À PROPOS", href: "/#about" },
     { name: "MENU", href: "/menu" },
     { name: "OFFRES", href: "/#special" },
@@ -81,7 +84,7 @@ export default function Navbar() {
         {/* LOGO */}
         <a href="/" className="flex items-center text-inherit z-110">
           <span className="text-3xl md:text-5xl font-anton uppercase tracking-tighter leading-none">
-            DECHINAN DELICE
+            {SITE_NAME}
           </span>
         </a>
 
@@ -102,12 +105,24 @@ export default function Navbar() {
         {/* ACTIONS */}
         <div className="flex items-center gap-8 z-110">
           {/* Bouton ORDER NOW : Visible UNIQUEMENT sur Desktop ici */}
-          <a
-            href="/menu"
-            className="hidden lg:flex items-center gap-4 py-4 px-10 bg-red-500 text-white rounded-full text-xs font-black tracking-widest hover:scale-105 transition-all shadow-lg"
+          <button
+             onClick={() => {
+                if (totalItems === 0) {
+                   // If empty, go to menu
+                   // We need to use router if it's not a link, but here we can just do a check
+                   // Actually, if we use a Link component, we can't easily prevent default.
+                   // Better to use a button with router.push logic or conditional click
+                   if (pathname !== '/menu') {
+                      window.location.href = "/menu";
+                   }
+                } else {
+                   toggleCart();
+                }
+             }}
+            className="hidden lg:flex items-center gap-4 py-4 px-10 bg-red-500 text-white rounded-full text-xs font-black tracking-widest hover:scale-105 transition-all shadow-lg cursor-pointer"
           >
-            ORDER NOW <ArrowRight size={20} />
-          </a>
+            COMMANDER {totalItems > 0 && `(${totalItems})`} <ArrowRight size={20} />
+          </button>
 
           {/* Hamburger : Garde la couleur text-white quand le menu est ouvert */}
           <button
@@ -139,13 +154,21 @@ export default function Navbar() {
         ))}
 
         {/* BOUTON DE COMMANDE À L'INTÉRIEUR DU MENU MOBILE */}
-        <a
-          href="/menu"
+        <button
+           onClick={() => {
+              setIsMenuOpen(false);
+               if (totalItems === 0) {
+                   if (pathname !== '/menu') {
+                      window.location.href = "/menu";
+                   }
+                } else {
+                   toggleCart();
+                }
+           }}
           className="mt-4 flex items-center gap-4 py-5 px-12 bg-red-500 text-white rounded-full text-lg font-anton tracking-widest uppercase"
-          onClick={() => setIsMenuOpen(false)}
         >
-          ORDER NOW <ArrowRight size={24} />
-        </a>
+          COMMANDER {totalItems > 0 && `(${totalItems})`} <ArrowRight size={24} />
+        </button>
       </div>
     </nav>
   );
