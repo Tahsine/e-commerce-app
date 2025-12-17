@@ -4,47 +4,52 @@ import { ArrowRight } from "lucide-react";
 export default function OursMenu() {
   const menuItems = [
     {
-      name: "SAKURA MOCKTAIL",
+      name: "MOCKTAIL SAKURA",
+      description: "Infusion florale aux notes pétillantes",
+
       price: 15.0,
       image:
         "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
-      description: "Cherry blossom infused with sparkling water",
       rating: 4.8,
       reviews: 40,
     },
     {
-      name: "GARLIC BUTTER",
+      name: "SAUCE AIL BEURRE",
+      description: "Sauce onctueuse relevée au citron vert",
+
       price: 16.0,
       image:
         "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
-      description: "Creamy mixed with lime dressing",
       rating: 4.8,
       reviews: 40,
     },
     {
-      name: "TERIYAKI SALMON",
+      name: "SAUMON TERIYAKI",
+      description: "Saumon grillé nappé de sauce teriyaki",
+
       price: 15.0,
       image:
         "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80",
-      description: "Grilled salmon glazed with teriyaki sauce",
       rating: 4.8,
       reviews: 40,
     },
     {
-      name: "GRILLED LAMB CHOPS",
+      name: "CÔTELETTES D’AGNEAU",
+      description: "Agneau tendre mariné aux herbes",
+
       price: 13.0,
       image:
         "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80",
-      description: "Tender lamb chops with herb marinade",
       rating: 4.8,
       reviews: 40,
     },
     {
       name: "TIRAMISU FUSION",
+      description: "Dessert italien revisité avec modernité",
+
       price: 15.0,
       image:
         "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80",
-      description: "Classic Italian dessert with a modern twist",
       rating: 4.8,
       reviews: 40,
     },
@@ -55,19 +60,18 @@ export default function OursMenu() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-16">
-          <p className="text-red-500 text-sm mb-4">{"{Our Menu}"}</p>
           <div className="flex items-end justify-between">
             <h2 className="font-anton text-5xl md:text-6xl lg:text-7xl leading-tight">
-              DISCOVER THE ART
+              PLAISIR DE LA
               <br />
-              OF TASTE
+              HAUTE SAVEUR
             </h2>
             <button className="hidden lg:block mb-2">
               <a
                 href="/menu"
                 className="flex items-center gap-2 py-3 px-8 bg-red-500 rounded-full hover:bg-red-600 transition-colors"
               >
-                <span className="text-white font-medium">VIEW ALL MENU</span>
+                <span className="text-white font-medium">VOIR LE MENU</span>
                 <ArrowRight color="white" size={20} />
               </a>
             </button>
@@ -91,7 +95,7 @@ export default function OursMenu() {
                   {/* Hover Button */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium">
-                      ORDER NOW
+                      COMMANDER
                     </button>
                   </div>
                 </div>
@@ -135,7 +139,7 @@ export default function OursMenu() {
                   {/* Hover Button */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium">
-                      ORDER NOW
+                      COMMENDER
                     </button>
                   </div>
                 </div>
@@ -182,7 +186,7 @@ export default function OursMenu() {
                 {/* Hover Button */}
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                   <button className="py-3 px-8 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors font-medium">
-                    ORDER NOW
+                    COMMENDER
                   </button>
                 </div>
               </div>
@@ -217,7 +221,7 @@ export default function OursMenu() {
               href="/menu"
               className="flex items-center gap-2 py-3 px-8 bg-red-500 rounded-full hover:bg-red-600 transition-colors"
             >
-              <span className="text-white font-medium">VIEW ALL MENU</span>
+              <span className="text-white font-medium">VOIR LE MENU</span>
               <ArrowRight color="white" size={20} />
             </a>
           </button>

@@ -39,7 +39,10 @@ export default function SpecialMenu() {
   ];
 
   return (
-    <section className="flex items-center justify-center min-h-screen px-5 py-20 md:px-12 lg:px-28">
+    <section
+      id="special"
+      className="flex items-center justify-center min-h-screen px-5 py-20 md:px-12 lg:px-28"
+    >
       <div className="w-full max-w-7xl">
         <h1 className="font-anton text-5xl md:text-6xl lg:text-7xl mt-2 mb-12 text-center">
           MENU SPECIAL

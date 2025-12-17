@@ -43,8 +43,9 @@ export default function About() {
 
   return (
     <section
+      id="about"
       ref={containerRef}
-      className="flex min-h-screen items-center justify-center bg-[#FEFAE0]"
+      className="flex min-h-screen items-center justify-center"
     >
       <div className="flex flex-col items-start md:items-center gap-8 px-5 py-12 md:px-12 lg:px-28 lg:py-20 max-w-7xl">
         <h2
