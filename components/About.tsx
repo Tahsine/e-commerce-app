@@ -6,12 +6,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+import { SITE_NAME } from "@/lib/data";
+
 export default function About() {
   const containerRef = useRef<HTMLOptionElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
 
   const textContent =
-    "[BRAND] est né d’un amour pour la bonne cuisine et le sens de l’accueil. Nos chefs allient traditions culinaires et créativité moderne pour proposer des plats qui éveillent les sens et réchauffent le cœur. Chaque ingrédient est soigneusement sélectionné.";
+    `${SITE_NAME} est né d’un amour pour la bonne cuisine et le sens de l’accueil. Nos chefs allient traditions culinaires et créativité moderne pour proposer des plats qui éveillent les sens et réchauffent le cœur. Chaque ingrédient est soigneusement sélectionné.`;
 
   const words = textContent.split(" ");
 
@@ -59,7 +61,8 @@ export default function About() {
           ))}
         </h2>
 
-        <button className="mt-4">
+        {/* Button hidden per user request */}
+        {/* <button className="mt-4">
           <a
             href="/"
             className="flex gap-2 py-3 px-6 bg-red-400 rounded-full hover:bg-red-500 transition-colors duration-300"
@@ -67,7 +70,7 @@ export default function About() {
             <span className="text-white font-medium">DECOUVRIR</span>
             <ArrowRight color="white" />
           </a>
-        </button>
+        </button> */}
       </div>
     </section>
   );

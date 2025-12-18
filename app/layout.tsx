@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Anton, Fredoka } from "next/font/google";
 import { CartProvider } from "@/context/CartContext";
 import CartModal from "@/components/CartModal";
+
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 const anton = Anton({
@@ -32,6 +34,7 @@ export default function RootLayout({
       <body className={`${fredoka.variable} ${anton.variable} antialiased`}>
         <CartProvider>
           {children}
+          <Analytics />
           <CartModal />
         </CartProvider>
       </body>

@@ -15,6 +15,9 @@ export default function CartModal() {
     null
   );
   const [isLocating, setIsLocating] = useState(false);
+  const [deliveryMode, setDeliveryMode] = useState<"delivery" | "pickup">(
+    "delivery"
+  );
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -99,8 +102,8 @@ export default function CartModal() {
       return;
     }
 
-    // On exige soit l'adresse texte, soit la localisation GPS
-    if (!formData.address && !location) {
+    // On exige l'adresse uniquement si c'est en livraison
+    if (deliveryMode === "delivery" && !formData.address && !location) {
       alert("Veuillez saisir une adresse ou partager votre localisation.");
       return;
     }
@@ -122,18 +125,22 @@ export default function CartModal() {
     };
     const paymentLabel = paymentMethods[formData.paymentMethod];
 
-    // Build Address String with Google Maps Link if available
-    let addressString = formData.address;
-    if (location) {
-      const mapsLink = `https://www.google.com/maps?q=${location.lat},${location.lng}`;
-      addressString += `\n📍 Position: ${mapsLink}`;
+    // Build Address String
+    let addressString = "SUR PLACE (À EMPORTER)";
+    if (deliveryMode === "delivery") {
+      addressString = formData.address || "Position GPS";
+      if (location) {
+        const mapsLink = `https://www.google.com/maps?q=${location.lat},${location.lng}`;
+        addressString += `\n📍 Position: ${mapsLink}`;
+      }
     }
 
     // WhatsApp Message
-    const message = `*NOUVELLE COMMANDE - ${formData.name}*
+    const message = `*NOUVELLE COMMANDE - ${deliveryMode === "delivery" ? "LIVRAISON" : "À EMPORTER"}*
     
 *Client:* ${formData.name}
 *Tél:* ${formData.phone}
+*Mode:* ${deliveryMode === 'delivery' ? '🛵 Livraison' : '🛍️ À Emporter'}
 *Adresse:* ${addressString}
 *Paiement:* ${paymentLabel}
 
@@ -285,31 +292,58 @@ ${itemsList}
                   }
                   className="w-full p-4 bg-white rounded-lg border border-gray-200 outline-none focus:border-black transition-colors"
                 />
-                <div className="flex flex-col gap-2">
-                  <textarea
-                    placeholder="Adresse de livraison (Quartier...)"
-                    value={formData.address}
-                    onChange={(e) =>
-                      setFormData({ ...formData, address: e.target.value })
-                    }
-                    className="w-full p-4 bg-white rounded-lg border border-gray-200 outline-none focus:border-black transition-colors min-h-[80px]"
-                  />
+
+                {/* Mode de retrait */}
+                <div className="flex gap-2 p-1 bg-gray-100 rounded-lg">
                   <button
-                    onClick={handleLocate}
-                    className={`flex items-center justify-center gap-2 py-3 rounded-lg border-2 transition-all ${
-                      location
-                        ? "bg-green-100 border-green-500 text-green-700"
-                        : "bg-white border-gray-200 text-gray-700 hover:border-black"
+                    onClick={() => setDeliveryMode("delivery")}
+                    className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${
+                      deliveryMode === "delivery"
+                        ? "bg-white shadow text-black"
+                        : "text-gray-500 hover:text-black"
                     }`}
                   >
-                    <MapPin size={20} />
-                    {isLocating
-                      ? "Localisation..."
-                      : location
-                      ? "Position partagée !"
-                      : "Ma Position GPS"}
+                    🛵 Livraison
+                  </button>
+                  <button
+                    onClick={() => setDeliveryMode("pickup")}
+                    className={`flex-1 py-2 rounded-md text-sm font-medium transition-all ${
+                      deliveryMode === "pickup"
+                        ? "bg-white shadow text-black"
+                        : "text-gray-500 hover:text-black"
+                    }`}
+                  >
+                    🛍️ À Emporter
                   </button>
                 </div>
+
+                {deliveryMode === "delivery" && (
+                  <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <textarea
+                      placeholder="Adresse de livraison (Quartier...)"
+                      value={formData.address}
+                      onChange={(e) =>
+                        setFormData({ ...formData, address: e.target.value })
+                      }
+                      className="w-full p-4 bg-white rounded-lg border border-gray-200 outline-none focus:border-black transition-colors min-h-[80px]"
+                    />
+                    <button
+                      onClick={handleLocate}
+                      className={`flex items-center justify-center gap-2 py-3 rounded-lg border-2 transition-all ${
+                        location
+                          ? "bg-green-100 border-green-500 text-green-700"
+                          : "bg-white border-gray-200 text-gray-700 hover:border-black"
+                      }`}
+                    >
+                      <MapPin size={20} />
+                      {isLocating
+                        ? "Localisation..."
+                        : location
+                        ? "Position partagée !"
+                        : "Ma Position GPS"}
+                    </button>
+                  </div>
+                )}
               </div>
 
               <div className="space-y-4">
