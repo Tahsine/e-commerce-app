@@ -1,7 +1,7 @@
 import { MenuItem } from "@/types";
 
 export const SITE_NAME = "DECHINAN DELICE";
-export const WHATSAPP_NUMBER = "22997672227"; // Numéro du gérant
+export const WHATSAPP_NUMBER = "2290168038671"; // Numéro du gérant
 
 export const OPENING_HOURS = {
   monday: { open: 11, close: 22 },
