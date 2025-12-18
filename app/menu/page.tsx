@@ -14,7 +14,7 @@ export default function MenuPage() {
 
   // Using imported CATEGORIES directly
   const categories = CATEGORIES;
-  
+
   // Using imported MENU_ITEMS directly
   const menuItems = MENU_ITEMS;
 

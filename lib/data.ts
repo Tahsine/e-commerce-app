@@ -17,13 +17,13 @@ export const CONTACT_INFO = {
   address: "Abomey-Calavi, Atlantique, Bénin",
   addressLink: "https://maps.google.com/?q=Abomey-Calavi",
   phone: "229 97 67 22 27",
-  email: "contact@dechinandelice.com", 
+  email: "contact@dechinandelice.com",
   hours: [
     { day: "Lun - Jeu", hours: "11h - 22h" },
     { day: "Ven", hours: "11h - 23h" },
     { day: "Sam", hours: "10h - 23h" },
     { day: "Dim", hours: "10h - 21h" },
-  ]
+  ],
 };
 
 export const CATEGORIES: { id: string; label: string }[] = [
@@ -44,7 +44,8 @@ export const MENU_ITEMS: MenuItem[] = [
     description: "Infusion florale aux notes pétillantes",
     price: 3500,
     category: "drink",
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
     rating: 4.8,
     reviews: 40,
     isFeatured: true,
@@ -55,7 +56,8 @@ export const MENU_ITEMS: MenuItem[] = [
     description: "Sauce onctueuse relevée au citron vert",
     price: 8000,
     category: "lunch",
-    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
     rating: 4.8,
     reviews: 40,
     isFeatured: false,
@@ -66,7 +68,8 @@ export const MENU_ITEMS: MenuItem[] = [
     description: "Saumon grillé nappé de sauce teriyaki",
     price: 12000,
     category: "dinner",
-    image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80",
     rating: 4.8,
     reviews: 40,
     isFeatured: true,
@@ -77,7 +80,8 @@ export const MENU_ITEMS: MenuItem[] = [
     description: "Agneau tendre mariné aux herbes",
     price: 9500,
     category: "dinner",
-    image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80",
     rating: 4.8,
     reviews: 40,
     isFeatured: false,
@@ -88,7 +92,8 @@ export const MENU_ITEMS: MenuItem[] = [
     description: "Dessert italien revisité avec modernité",
     price: 4500,
     category: "dessert",
-    image: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=800&q=80",
     rating: 4.8,
     reviews: 40,
     isFeatured: false,
@@ -102,7 +107,8 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 6000,
     category: "dinner",
     isFeatured: true,
-    image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&q=80",
     rating: 4.7,
     reviews: 90,
   },
@@ -113,7 +119,8 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 5000,
     category: "dinner",
     isFeatured: true,
-    image: "https://images.unsplash.com/photo-1564489563601-c53cfc451e93?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1564489563601-c53cfc451e93?w=800&q=80",
     rating: 5,
     reviews: 100,
   },
@@ -124,7 +131,8 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 7500,
     category: "dinner",
     isFeatured: false,
-    image: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=800&q=80",
     rating: 5,
     reviews: 35,
   },
@@ -135,7 +143,8 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 15000,
     category: "lunch",
     isFeatured: true,
-    image: "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=800&q=80",
     rating: 4.8,
     reviews: 75,
   },
@@ -146,7 +155,8 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 8500,
     category: "dinner",
     isFeatured: false,
-    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80",
     rating: 4.9,
     reviews: 62,
   },
@@ -157,7 +167,8 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 18000,
     category: "lunch",
     isFeatured: true,
-    image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=800&q=80",
     rating: 4.6,
     reviews: 88,
   },
@@ -168,7 +179,8 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 3500,
     category: "breakfast",
     isFeatured: false,
-    image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=800&q=80",
     rating: 4.8,
     reviews: 120,
   },
@@ -179,7 +191,8 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 3000,
     category: "dessert",
     isFeatured: false,
-    image: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800&q=80",
     rating: 5,
     reviews: 95,
   },
@@ -190,11 +203,12 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 4500,
     category: "breakfast",
     isFeatured: true,
-    image: "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=800&q=80",
     rating: 4.7,
     reviews: 110,
   },
-  
+
   // Special Menu Items
   {
     id: "sm-1",
@@ -204,7 +218,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "dinner",
     isFeatured: false,
     isSpecial: true,
-    image: "https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1625943553852-781c6dd46faa?w=800&q=80",
     rating: 4.9,
     reviews: 45,
   },
@@ -216,7 +231,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "dinner",
     isFeatured: false,
     isSpecial: true,
-    image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=800&q=80",
     rating: 5.0,
     reviews: 30,
   },
@@ -228,7 +244,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "lunch",
     isFeatured: false,
     isSpecial: true,
-    image: "https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1595295333158-4742f28fbd85?w=800&q=80",
     rating: 4.8,
     reviews: 50,
   },
@@ -240,7 +257,8 @@ export const MENU_ITEMS: MenuItem[] = [
     category: "dessert",
     isFeatured: false,
     isSpecial: true,
-    image: "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800&q=80",
+    image:
+      "https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=800&q=80",
     rating: 4.9,
     reviews: 120,
   },
